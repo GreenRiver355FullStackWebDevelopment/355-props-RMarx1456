@@ -4,7 +4,7 @@
 
 - [ ] **Use React build tools to scaffold a React application.**
 - [ ] **Implement React Components to render JSX**
-- [ ] **Pass data though component props**
+- [ ] **Pass data through component props**
 - [ ] **Understand component hierarchy.**
 - [ ] **Understand the roles of container components and presentational components.**
 
@@ -101,7 +101,7 @@ export default App;
 
 2. Create a Presentational Component
 
-- Create a new file called Restaurant
+- Create a new file called Restaurant.js
 - Within it create a function called Restaurant that returns a div
 - Export the function
 
@@ -128,7 +128,7 @@ export default Restaurant;
 
 - import Restaurant to RestaurantsContainer
 - import data from data/data.js to RestaurantsContainer
-- add a pair of {} in the div being returned by RestaurantsContainer
+- se curly braces {} to embed JavaScript in JSX in the div being returned by RestaurantsContainer
 - within those {} call .map() on the data array. Pass .map a callback that returns the Restaurant component
 
 <details>
@@ -161,6 +161,7 @@ export default RestaurantsContainer;
 4. Pass props from the container component to the presentational component.
 
 - Pass the current restaurant being iterated over in the map function as a prop to the Restaurant component. Use the prop key restaurant to pass this value:
+- Note: When rendering a list of components using .map(), always include a unique key prop such as key={restaurant.id} to help React track elements efficiently.
 
 <details>
   <summary>Click Here to view solution</summary>
@@ -174,7 +175,7 @@ import Restaurant from "./Restaurant";
 function RestaurantsContainer() {
   return (
     <div className="restaurantContainer">
-      {restaurants.map(restaurant => <Restaurant restaurant={restaurant} />)}
+      {restaurants.map(restaurant => <Restaurant key={restaurant.id} restaurant={restaurant} />)}
     </div>
   );
 }
@@ -186,7 +187,7 @@ export default RestaurantsContainer;
 
 </details>
 
-5. Access props in the container component.
+5. Access props in the presentational component.
 
 - In the Restaurant compoent create a paramater called props.
 - Inside the div returned by the component, create elements to display the data. Access the data using props.restaurant.<dataKey>.
@@ -199,7 +200,7 @@ function Restaurant(props) {
 
   return (
     <div className="restaurant">
-      <img src={props.restaurant.image} alt={props.name} />
+      <img src={props.restaurant.image} alt={props.restaurant.name} />
       <h2>{props.restaurant.name}</h2>
       <ul>
         <li>{props.restaurant.address}</li>
