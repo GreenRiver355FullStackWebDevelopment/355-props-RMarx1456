@@ -5,7 +5,7 @@ function RestaurantsContainer() {
   return (
     <div className="restaurantContainer">
       {restaurants.map((restaurant) => (
-        <Restaurant />
+        <Restaurant restaurant={restaurant} key={restaurant.id}/>
       ))}
     </div>
   );
